@@ -1,0 +1,43 @@
+export default {
+    sidebar: {
+        history: "History",
+        theology: "Theology",
+        health: "Health",
+        settings: "Settings",
+        friends: "Friends",
+        favorites: "Favorites",
+        download_manager: "Download Manager",
+        movies: "Movies"
+    },
+    general: {
+        history: "History",
+        movies: "Movie",
+        theology: "Theology",
+        friends: "Friends",
+        health: "Health",
+        video: "Video",
+        book: "Book",
+        cartoon: "Cartoon",
+        series: "Series",
+        favorites: "Favorites",
+        download_manager: "Download Manager",
+        loading: "Loading",
+        download_status: {
+           done: 'Done',
+            in_progress: "In progress",
+            queued: "Queued",
+            cancelled: "Cancelled",
+            failed: "Failed"
+        },
+        no_video: "No videos available",
+        no_video_description: "There are currently no videos available",
+        no_book: "No books available",
+        no_book_description: "There are currently no books available",
+        no_series: "No series available",
+        no_series_description: "There are currently no series available",
+        no_movie: "No movies available",
+        no_movie_description: "There are currently no movies available",
+        no_cartoon: "No cartoons available",
+        no_cartoon_description: "There are currently no cartoons available",
+    }
+}
