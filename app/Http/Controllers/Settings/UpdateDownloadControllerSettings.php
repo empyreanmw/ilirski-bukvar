@@ -15,7 +15,7 @@ class UpdateDownloadControllerSettings extends Controller
         $appSettings = AppSettings::first();
 
         $appSettings->download_path = $request->download_path;
-        $appSettings->video_quality = $request->video_quality;
+        $appSettings->video_quality = $request->video_quality ?? VideoQuality::QUALITY_720;
         $appSettings->save();
 
         return Inertia::render('settings/Downloads', [

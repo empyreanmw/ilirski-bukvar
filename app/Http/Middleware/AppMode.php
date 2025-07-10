@@ -18,7 +18,7 @@ readonly class AppMode
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $this->appModeService->setMode();
+        $this->appModeService->checkConnection();
 
         return $next($request);
     }

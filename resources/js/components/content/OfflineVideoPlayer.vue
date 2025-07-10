@@ -17,8 +17,6 @@ const openFile = (id: number): void => {
         onSuccess: () => form.reset('contentId'),
     });
 }
-
-
 </script>
 
 <template>

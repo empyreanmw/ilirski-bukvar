@@ -8,6 +8,7 @@ import Video from '@/components/content/Video.vue';
 import Pagination from '@/components/content/Pagination.vue';
 import { emitter } from '@/utils/eventBus';
 import NoContent from '@/components/content/NoContent.vue';
+import SpinningLoader from '@/components/SpinningLoader.vue';
 
 interface Props {
     content: {
@@ -32,6 +33,7 @@ const breadcrumbs: BreadcrumbItem[] = [
         href: `/content/${items.value[0]?.parent.id}`,
     },
 ];
+const isLoading = ref(true)
 const activeItem = computed(() => page.props.activeItem)
 const handleDownloadFinished = (payload: downloadFinishedPayload) => {
     items.value = items.value.map(item =>
@@ -44,12 +46,16 @@ const handleScrollToSearchFile = () => {
         if (el) {
             el.scrollIntoView({ behavior: 'smooth' });
         }
-    }, 200);
+    }, 1200);
 }
 
 onMounted(() => {
     handleScrollToSearchFile()
     emitter.on('download-finished', handleDownloadFinished)
+    // Simulate async load
+    setTimeout(() => {
+        isLoading.value = false
+    }, 1000) // Adjust to fit your real loading time
 })
 onBeforeUnmount(() => {
     emitter.off('download-finished')
@@ -61,15 +67,18 @@ onBeforeUnmount(() => {
     <Head :title="t(`general.${page.props.category}`)"/>
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
-            <Pagination v-if="items.length" :link="pagination"></Pagination>
-            <div v-if="items.length" class="grid auto-rows-min gap-4 md:grid-cols-3 pt-4">
-                <div
-                    v-for="content in items" :key="content.id"
-                >
-                    <Video :id="'video-' + content.id" :active="activeItem === content.id" :video="content"/>
+            <SpinningLoader v-if="isLoading"/>
+            <div v-show="!isLoading">
+                <Pagination v-if="items.length" :link="pagination"></Pagination>
+                <div v-if="items.length" class="grid auto-rows-min gap-4 md:grid-cols-3 pt-4">
+                    <div
+                        v-for="content in items" :key="content.id"
+                    >
+                        <Video :id="'video-' + content.id" :active="activeItem === content.id" :video="content"/>
+                    </div>
                 </div>
+                <NoContent v-else icon="Video" type="video"/>
             </div>
-            <NoContent v-else icon="Video" type="video"/>
         </div>
     </AppLayout>
 </template>

@@ -12,7 +12,7 @@ class QueueJobRequestsRepository
     public function getRequests()
     {
         $jobRequests = $this->getRequestsOrderedByStatus()
-            ->paginate(10);
+            ->smartPaginate();
 
         $result = $jobRequests->getCollection()
             ->map(function ($item) {

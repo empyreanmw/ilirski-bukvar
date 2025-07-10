@@ -4,7 +4,7 @@ import en from './lang/en.js' // ← this is the .ts file
 
 export const i18n = createI18n({
     legacy: false,
-    locale: 'en',
+    locale: 'rs',
     fallbackLocale: 'en',
     messages: {
         rs,

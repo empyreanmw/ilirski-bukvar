@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if(Schema::hasTable('queue_job_requests')) {
+        if(!Schema::hasTable('queue_job_requests')) {
             Schema::create('queue_job_requests', function (Blueprint $table) {
                 $table->id();
                 $table->unsignedInteger('job_reference_id');

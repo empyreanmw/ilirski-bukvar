@@ -10,6 +10,7 @@ use App\Models\Content;
 use App\Models\Series;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
 
 class ContentRepository
@@ -30,14 +31,13 @@ class ContentRepository
     public function getContentWithSeries(Category $category, ContentType $contentType, AppMode $appMode): LengthAwarePaginator
     {
         $category = $this->findCategory($category);
-
         $series = Series::query()
             ->where('category_id', $category->id)
             ->whereHas('content', function ($builder) use ($contentType, $appMode) {
                 $builder->where('type', $contentType);
             })
             ->with('author')
-            ->paginate(10);
+            ->smartPaginate($contentType);
 
         $series->getCollection()->transform(function (Series $item) use ($appMode, $category, $contentType) {
                 $item->category = $category->name;
@@ -66,7 +66,7 @@ class ContentRepository
     {
         return Content::query()
             ->modeAwareContent($contentType)
-            ->where('is_favorite', true)->paginate(10);
+            ->where('is_favorite', true)->smartPaginate($contentType);
     }
 
     public function getFavoriteSeries(AppMode $appMode): LengthAwarePaginator
@@ -81,7 +81,7 @@ class ContentRepository
             });
         }
 
-        return $query->paginate(10);
+        return $query->smartPaginate();
     }
 
     public function getNonDownloadedContent(array $categories, string $type = null): Collection

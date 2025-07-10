@@ -16,8 +16,16 @@ class UpdateDownloadSettingsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'video_quality' => ['integer', 'required'],
+            'video_quality' => ['integer', 'nullable'],
             'download_path' => ['string', 'required']
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'download_path.required' => __('settings.downloads.validation.download_path'),
+            'download_path.string' => __('settings.downloads.validation.download_path')
         ];
     }
 }

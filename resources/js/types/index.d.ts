@@ -16,6 +16,7 @@ export interface NavItem {
     href: string;
     icon?: LucideIcon;
     isActive?: boolean;
+    event?: string;
 }
 
 export interface SharedData extends PageProps {
@@ -116,6 +117,7 @@ export interface Category {
     size: number
 }
 
+export type Tab = 'video'|'book'
 export type FileType = 'file'|'folder'
 
 export type ContentEntity = 'series'|'content'

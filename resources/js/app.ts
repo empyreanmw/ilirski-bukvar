@@ -6,7 +6,7 @@ import type { DefineComponent } from 'vue';
 import { createApp, h } from 'vue';
 import { ZiggyVue } from 'ziggy-js';
 import { initializeTheme } from './composables/useAppearance';
-import { i18n } from './ts.js'; // Add this
+import { i18n } from './ts.js';
 import '@/bootstrap/native-events';
 
 // Extend ImportMeta interface for Vite...

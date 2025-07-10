@@ -2,6 +2,9 @@
 import { SidebarGroup, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { type NavItem, type SharedData } from '@/types';
 import { Link, usePage } from '@inertiajs/vue3';
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 defineProps<{
     items: NavItem[];
@@ -15,7 +18,7 @@ const page = usePage<SharedData>();
         <SidebarMenu>
             <SidebarMenuItem class="p-2" v-for="item in items" :key="item.title">
                 <SidebarMenuButton
-                    as-child :is-active="item.href === page.url || page.props.category === item.title.toLowerCase() || page.url.includes(item.href)"
+                    as-child :is-active="item.href === page.url || t('general.' + page.props.category) === item.title || page.url.includes(item.href)"
                     :tooltip="item.title"
                 >
                     <Link class="p-2" :href="item.href">

@@ -58,22 +58,28 @@ const openFile = (id: number): void => {
             </div>
 
             <!-- Actions -->
-            <div class="flex shrink-0 pt-4 items-center gap-2">
-                <FavoritesButton @unfavorited="(event) => emit('unfavorited', event)" :content="props.book" content-entity="content" />
-                <div>
+            <div class="flex flex-wrap items-center gap-2 pt-4">
+                <FavoritesButton
+                    @unfavorited="event => emit('unfavorited', event)"
+                    :content="props.book"
+                    content-entity="content"
+                />
+
+                <template v-if="props.book.downloaded">
                     <ShowInFolderButton
-                        v-if="props.book.downloaded"
                         :content="props.book"
                         content-entity="content"
+                        class="align-middle"
                     />
+                </template>
+
+                <template v-else-if="isAppOnline()">
                     <DownloadButton
-                        v-else-if="isAppOnline()"
                         :id="props.book.id"
                         content-entity="content"
-                        class="hover:text-green-500"
-                        style="position: relative; top: -2px"
+                        class="hover:text-green-500 align-middle"
                     />
-                </div>
+                </template>
             </div>
         </div>
     </div>

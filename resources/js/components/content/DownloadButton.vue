@@ -5,6 +5,8 @@ import axios from 'axios';
 import 'vue-toast-notification/dist/theme-sugar.css';
 import { ContentEntity } from '@/types';
 import { ref } from 'vue';
+import { useI18n } from 'vue-i18n';
+const { t } = useI18n()
 
 interface Props {
     id: number;
@@ -22,7 +24,7 @@ const download = () => {
     }).then (response => {
     }).catch(error => {
         $toast.open({
-            message: 'Could not start file download',
+            message: t('components.download_button.download_error_message'),
             type: 'error',
             duration: 5000
         });

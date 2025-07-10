@@ -4,5 +4,29 @@
     "thumbnail_url": "https://biblijskifilmovi.com/wp-content/thumbnails/posledice-landscape.jpg",
     "download_url": "https://pub-052e2388f66b450f917bc3da25dc5ace.r2.dev/posledice/posledice.mp4",
     "url": "https://pub-052e2388f66b450f917bc3da25dc5ace.r2.dev/posledice/posledice.mp4"
-  }
+  },
+    {
+        "name": "Bitka na Čudskom jezeru",
+        "thumbnail_url": "https://biblijskifilmovi.com/wp-content/uploads/2021/12/1.jpg",
+        "download_url": "https://drive.usercontent.google.com/download?id=11JYieiu918Ri5OfPe6Jol7WK27wWLpsR&export=download",
+        "url": "https://drive.google.com/file/d/11JYieiu918Ri5OfPe6Jol7WK27wWLpsR/preview"
+    },
+    {
+        "name": "Kralj Petar I",
+        "thumbnail_url": "https://biblijskifilmovi.com/wp-content/uploads/2021/09/flyer.jpg",
+        "download_url": "https://pub-052e2388f66b450f917bc3da25dc5ace.r2.dev/kralj-petar/kralj-petar.mp4",
+        "url": "https://pub-052e2388f66b450f917bc3da25dc5ace.r2.dev/kralj-petar/kralj-petar.mp4"
+    },
+    {
+        "name": "Dnevnik Diane Budisavljević",
+        "thumbnail_url": "https://biblijskifilmovi.com/wp-content/uploads/2021/09/flyer.jpg",
+        "download_url": "https://drive.usercontent.google.com/download?id=1MlHA22E6bRE513i_MDqtpJheDpIYkVS2&export=download",
+        "url": "https://drive.google.com/file/d/1MlHA22E6bRE513i_MDqtpJheDpIYkVS2/preview"
+    },
+    {
+        "name": "Dnevnik Diane Budisavljević",
+        "thumbnail_url": "https://biblijskifilmovi.com/wp-content/uploads/2021/09/flyer.jpg",
+        "download_url": "https://drive.usercontent.google.com/download?id=1MlHA22E6bRE513i_MDqtpJheDpIYkVS2&export=download",
+        "url": "https://drive.google.com/file/d/1MlHA22E6bRE513i_MDqtpJheDpIYkVS2/preview"
+    }
 ]

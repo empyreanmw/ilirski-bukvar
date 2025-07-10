@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if (Schema::hasTable('contents') && !Schema::hasColumn('contents', 'thumbnail_url')) {
+        if (Schema::hasTable('contents') && Schema::hasColumn('contents', 'thumbnail_url')) {
             Schema::table('contents', function (Blueprint $table) {
                 $table->string('thumbnail_url')->nullable()->change();
             });

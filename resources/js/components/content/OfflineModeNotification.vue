@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { useAppMode } from '@/composables/useAppMode';
 import { ref } from 'vue';
+import { useI18n } from 'vue-i18n';
 
+const { t } = useI18n()
 const { isAppModeSwitchManual } = useAppMode()
 const notificationVisible = ref(true)
 </script>
@@ -14,11 +16,11 @@ const notificationVisible = ref(true)
             </svg>
             <span class="sr-only">Info</span>
             <div>
-                <span class="font-medium">App has been switched to offline mode, due to unstable connection!</span>
+                <span class="font-medium">{{t('components.offline_mode_notification.offline_message')}}</span>
             </div>
         </div>
-        <button type="button" class="cursor-pointer ms-4 -me-2 text-yellow-800 rounded-lg focus:ring-2 focus:ring-yellow-400 p-1.5 hover:bg-yellow-200 dark:hover:bg-gray-700 inline-flex items-center justify-center h-8 w-8" aria-label="Close">
-            <svg @click="notificationVisible = false" class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14" stroke="currentColor">
+        <button  @click="notificationVisible = false" type="button" class="cursor-pointer ms-4 -me-2 text-yellow-800 rounded-lg focus:ring-2 focus:ring-yellow-400 p-1.5 hover:bg-yellow-200 dark:hover:bg-gray-700 inline-flex items-center justify-center h-8 w-8" aria-label="Close">
+            <svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4l6 6m0-6L4 10" />
             </svg>
         </button>

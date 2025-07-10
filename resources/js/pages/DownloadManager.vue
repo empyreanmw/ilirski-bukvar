@@ -35,11 +35,11 @@ const getFileSize = (request: JobRequest): string => {
     if (request.size) {
         return request.size + 'Mb'
     }
-    if (request.job_reference.size) {
+    if (request.job_reference?.size) {
         return request.job_reference.size + 'Mb'
     }
 
-    return 'Unknown'
+    return t('download_manager.unknown_size')
 }
 const handleDownloadOutput = (payload: downloadOutput) => {
     items.value = items.value.map(item =>
@@ -93,7 +93,7 @@ const download  = (request: JobRequest) => {
     }).then (() => {
     }).catch(() => {
         $toast.open({
-            message: 'Could not start file download',
+            message: t('download_manager.could_not_start_download'),
             type: 'error',
             duration: 5000
         });
@@ -118,7 +118,7 @@ onBeforeUnmount(() => {
             <!-- Cancel All Button -->
             <div v-if="items.length" class="flex justify-end mb-2">
                 <Button @click="cancelAllDownloads" type="button" class="cursor-pointer px-4 py-2 text-sm bg-red-600 text-white hover:bg-red-700">
-                    Cancel all
+                    {{t('download_manager.cancel_all')}}
                 </Button>
             </div>
             <!-- Download Table -->
@@ -126,11 +126,11 @@ onBeforeUnmount(() => {
                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 border-collapse">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 sticky top-0 z-10">
                     <tr>
-                        <th class="px-6 py-3">File Name</th>
-                        <th class="px-6 py-3">Progress</th>
-                        <th class="px-6 py-3">Size</th>
-                        <th class="px-6 py-3">Status</th>
-                        <th class="px-6 py-3">Action</th>
+                        <th class="px-6 py-3">{{t('download_manager.file')}}</th>
+                        <th class="px-6 py-3">{{t('download_manager.progress')}}</th>
+                        <th class="px-6 py-3">{{t('download_manager.size')}}</th>
+                        <th class="px-6 py-3">{{t('download_manager.status')}}</th>
+                        <th class="px-6 py-3">{{t('download_manager.action')}}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -141,7 +141,7 @@ onBeforeUnmount(() => {
                     >
                         <!-- Title -->
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {{ request.job_reference.title }}
+                            {{ request.job_reference?.title }}
                         </th>
 
                         <!-- Progress -->
@@ -192,8 +192,8 @@ onBeforeUnmount(() => {
             <!-- Empty State -->
             <div v-else class="flex flex-col items-center justify-center h-full py-20 text-center text-gray-500 dark:text-gray-400">
                 <Icon name="download" class="w-12 h-12 mb-4 text-gray-400" />
-                <h2 class="text-lg font-semibold text-gray-700 dark:text-white">No active downloads</h2>
-                <p class="text-sm mt-1">You have no active downloads at the moment.</p>
+                <h2 class="text-lg font-semibold text-gray-700 dark:text-white">{{t('download_manager.no_active_downloads')}}</h2>
+                <p class="text-sm mt-1">{{t('download_manager.no_active_downloads_description')}}</p>
             </div>
         </div>
     </AppLayout>

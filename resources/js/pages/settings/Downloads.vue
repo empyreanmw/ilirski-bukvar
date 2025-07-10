@@ -14,6 +14,9 @@ import {useToast} from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-sugar.css';
 import { computed, onMounted, ref } from 'vue';
 import Dialog from '@/components/content/Dialog.vue';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n()
 
 interface Props {
     videoQualities: number[];
@@ -22,7 +25,7 @@ interface Props {
 defineProps<Props>();
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Download settings',
+        title: t('settings.downloads.title'),
         href: '/settings/downloads',
     },
 ];
@@ -62,7 +65,7 @@ const downloadAll = () => {
     axios.post('/download-all')
         .then(response => {
             $toast.open({
-                message: 'The download was started, check the progress in download manager',
+                message: t('download_manager.download_started'),
                 type: 'success',
                 duration: 5000
             });
@@ -78,7 +81,7 @@ const deleteAll = () => {
     axios.post('/delete-all')
         .then(response => {
             $toast.open({
-                message: 'The delete process was started, it might take a bit for all content to be deleted',
+                message: t('download_manager.files_deleted'),
                 type: 'success',
                 duration: 5000
             });
@@ -102,7 +105,7 @@ const confirmDownload = () => {
     })
         .then(response => {
             $toast.open({
-                message: 'The download was started, check the progress in download manager',
+                message: t('download_manager.download_started'),
                 type: 'success',
                 duration: 5000
             });
@@ -125,16 +128,16 @@ const confirmDelete = () => {
 
 <template>
     <AppLayout :breadcrumbs="breadcrumbs">
-        <Head title="Downloads settings" />
+        <Head :title=" t('settings.downloads.title')" />
         <SettingsLayout>
             <div class="flex flex-col space-y-10 max-w-4xl">
                 <!-- Download Info Section -->
                 <section>
-                    <HeadingSmall title="Download information" description="Update some information about downloads" />
+                    <HeadingSmall :title=" t('settings.downloads.subtitle')" :description=" t('settings.downloads.description')" />
                     <form @submit.prevent="submit" class="grid gap-6 mt-6">
                         <!-- Video Quality -->
                         <div>
-                            <Label for="video_quality">Video Quality</Label>
+                            <Label for="video_quality">{{t('settings.downloads.video_quality')}}</Label>
                             <select
                                 id="video_quality"
                                 class="mt-1 block w-full rounded-md border border-gray-300 bg-white text-gray-900 text-sm shadow-sm focus:border-primary-500 focus:ring focus:ring-primary-500 focus:ring-opacity-50 px-3 py-2"
@@ -146,7 +149,7 @@ const confirmDelete = () => {
                             <InputError class="mt-2" :message="form.errors.video_quality" />
                         </div>
                         <Dialog
-                            title="Download Path"
+                            :title=" t('settings.downloads.download_path')"
                             type="folder"
                             :model="form.download_path"
                             @file-selected="(event) => form.download_path = event">
@@ -155,14 +158,14 @@ const confirmDelete = () => {
 
                         <!-- Save Button -->
                         <div class="flex items-center gap-4">
-                            <Button :disabled="form.processing" class="px-6 py-2">Save</Button>
+                            <Button :disabled="form.processing" class="px-6 py-2">{{t('general.form.save')}}</Button>
                             <Transition
                                 enter-active-class="transition ease-in-out"
                                 enter-from-class="opacity-0"
                                 leave-active-class="transition ease-in-out"
                                 leave-to-class="opacity-0"
                             >
-                                <p v-show="form.recentlySuccessful" class="text-sm text-neutral-600">Saved.</p>
+                                <p v-show="form.recentlySuccessful" class="text-sm text-neutral-600">{{t('general.form.saved')}}</p>
                             </Transition>
                         </div>
                     </form>
@@ -172,7 +175,7 @@ const confirmDelete = () => {
                 <div class="border-t pt-6" />
 
                 <section>
-                    <HeadingSmall title="Manage Downloads" description="Perform actions on your downloaded content." />
+                    <HeadingSmall :title=" t('settings.downloads.manage_downloads')" :description=" t('settings.downloads.manage_downloads_description')" />
 
                     <div class="mt-6 grid grid-cols-2 gap-6">
                         <!-- Download all -->
@@ -181,9 +184,9 @@ const confirmDelete = () => {
                                 <Icon name="download" class="text-primary-600 w-5 h-5" />
                             </div>
                             <div class="flex flex-col">
-                                <span class="font-medium text-gray-800 dark:text-white">Download all</span>
-                                <span class="text-sm text-gray-600 dark:text-gray-300">Download all available content to disk.</span>
-                                <Button @click="showDownloadConfirm = true" class="cursor-pointer mt-2 w-max px-4 py-1.5">Download</Button>
+                                <span class="font-medium text-gray-800 dark:text-white">{{t('settings.downloads.download_all_title')}}</span>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">{{t('settings.downloads.download_all_description')}}</span>
+                                <Button @click="showDownloadConfirm = true" class="cursor-pointer mt-2 w-max px-4 py-1.5">{{t('settings.downloads.download_all_title')}}</Button>
                             </div>
                         </div>
 
@@ -193,10 +196,10 @@ const confirmDelete = () => {
                                 <Icon name="trash" class="text-red-600 w-5 h-5" />
                             </div>
                             <div class="flex flex-col">
-                                <span class="font-medium text-gray-800 dark:text-white">Delete all</span>
-                                <span class="text-sm text-gray-600 dark:text-gray-300">Permanently remove all downloaded files.</span>
+                                <span class="font-medium text-gray-800 dark:text-white">{{t('settings.downloads.delete_all_title')}}</span>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">{{t('settings.downloads.delete_all_description')}}</span>
                                 <!-- For Delete -->
-                                <Button @click="showDeleteConfirm = true" class="cursor-pointer mt-2 w-max px-4 py-1.5 bg-red-600 hover:bg-red-700 text-white">Delete</Button>
+                                <Button @click="showDeleteConfirm = true" class="cursor-pointer mt-2 w-max px-4 py-1.5 bg-red-600 hover:bg-red-700 text-white">{{t('settings.downloads.delete_all_title')}}</Button>
                             </div>
                         </div>
                     </div>
@@ -205,8 +208,8 @@ const confirmDelete = () => {
                 <Teleport to="body">
                     <div v-if="showDownloadConfirm" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
                         <div class="bg-white dark:bg-gray-800 rounded-lg p-6 max-w-sm w-full shadow-lg space-y-4">
-                            <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Download Content by Category</h2>
-                            <p class="text-sm text-gray-700 dark:text-gray-300 mb-4">Select the categories to download content from:</p>
+                            <h2 class="text-lg font-semibold text-gray-900 dark:text-white">{{t('settings.password.download_modal.title')}}</h2>
+                            <p class="text-sm text-gray-700 dark:text-gray-300 mb-4">{{t('settings.password.download_modal.description')}}</p>
 
                             <div class="space-y-2 max-h-60 overflow-y-auto">
                                 <div
@@ -234,19 +237,20 @@ const confirmDelete = () => {
 
                             <!-- Total Size -->
                             <div class="mt-4 flex justify-end items-center text-sm text-gray-700 dark:text-gray-300">
-                                Total:
+                                {{t('settings.password.download_modal.total')}}
                                 <span class="ml-2 font-semibold text-gray-900 dark:text-white">
         {{ totalSelectedSizeGb }} GB
     </span>
                             </div>
 
                             <div class="flex justify-end gap-2 mt-6">
-                                <Button variant="ghost" @click="showDownloadConfirm = false">Cancel</Button>
+                                <Button class="cursor-pointer" variant="ghost" @click="showDownloadConfirm = false">{{t('general.form.cancel')}}</Button>
                                 <Button
                                     :disabled="selectedCategories.length === 0"
                                     @click="confirmDownload"
+                                    class="cursor-pointer"
                                 >
-                                    Download Selected
+                                    {{t('settings.password.download_modal.download_selected')}}
                                 </Button>
                             </div>
                         </div>
@@ -258,11 +262,11 @@ const confirmDelete = () => {
                 <Teleport to="body">
                     <div v-if="showDeleteConfirm" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
                         <div class="bg-white dark:bg-gray-800 rounded-lg p-6 max-w-sm w-full shadow-lg space-y-4">
-                            <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Delete All Files?</h2>
-                            <p class="text-sm text-gray-700 dark:text-gray-300">This will permanently remove all downloaded files.</p>
+                            <h2 class="text-lg font-semibold text-gray-900 dark:text-white">{{t('settings.password.delete_modal.title')}}</h2>
+                            <p class="text-sm text-gray-700 dark:text-gray-300">{{t('settings.password.delete_modal.description')}}</p>
                             <div class="flex justify-end gap-2 mt-4">
-                                <Button variant="ghost" @click="showDeleteConfirm = false">Cancel</Button>
-                                <Button class="bg-red-600 text-white hover:bg-red-700" @click="confirmDelete">Yes, Delete</Button>
+                                <Button class="cursor-pointer" variant="ghost" @click="showDeleteConfirm = false">{{t('general.form.cancel')}}</Button>
+                                <Button class="cursor-pointer bg-red-600 text-white hover:bg-red-700" @click="confirmDelete">{{t('settings.password.delete_modal.submit')}}</Button>
                             </div>
                         </div>
                     </div>

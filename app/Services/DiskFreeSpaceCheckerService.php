@@ -17,7 +17,7 @@ class DiskFreeSpaceCheckerService
         $disk = $this->findDiskFromDownloadPath();
 
         if (!file_exists($disk)) {
-            throw new InvalidDownloadPathException('Invalid download path was set in settings/downloads page');
+            throw new InvalidDownloadPathException(__('settings.downloads.invalid_path_selected'));
         }
 
         $freeBytes = disk_free_space($disk);
@@ -25,8 +25,8 @@ class DiskFreeSpaceCheckerService
         $freeGB = round($freeBytes / 1024 / 1024 / 1024, 2);
         $requiredGB = round($this->calculateTotalSpaceRequired($categories) / 1024, 2);
 
-        if ($freeGB < $requiredGB) {
-            throw new NotEnoughDiskSpaceException(sprintf('Not enough disk space! Disk space required %sGB', $requiredGB));
+        if ($requiredGB > $freeGB) {
+            throw new NotEnoughDiskSpaceException(__('settings.downloads.download_size_error', ['size' => $requiredGB]));
         }
     }
 

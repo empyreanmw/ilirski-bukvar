@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type BreadcrumbItem } from '@/types';
+import { type BreadcrumbItem, Tab } from '@/types';
 import { useI18n } from 'vue-i18n'
 import ContentPageLayout from '@/layouts/ContentPageLayout.vue';
 
@@ -10,9 +10,10 @@ const breadcrumbs: BreadcrumbItem[] = [
         href: '/health',
     },
 ];
+const tabs: Array<Tab> = ['video', 'book']
 </script>
 
 <template>
-    <ContentPageLayout title="health" :breadcrumbs="breadcrumbs">
+    <ContentPageLayout :tabs="tabs" title="health" :breadcrumbs="breadcrumbs">
     </ContentPageLayout>
 </template>

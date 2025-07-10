@@ -4,6 +4,7 @@ namespace App\Services\Downloader;
 
 use App\Models\Content;
 use Exception;
+use Illuminate\Support\Facades\Log;
 
 readonly class DownloadService
 {
@@ -21,6 +22,7 @@ readonly class DownloadService
                 ->create($content)
                 ->download($content);
         } catch (Exception $exception) {
+            Log::error($content);
             throw new Exception($exception->getMessage());
         }
     }

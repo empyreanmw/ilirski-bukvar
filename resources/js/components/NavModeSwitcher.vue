@@ -1,21 +1,20 @@
 <script setup lang="ts">
 import { SidebarMenu, SidebarMenuItem } from '@/components/ui/sidebar';
-import { useForm, router } from '@inertiajs/vue3';
+import { useForm } from '@inertiajs/vue3';
 import { useAppMode } from '@/composables/useAppMode';
+import { useI18n } from 'vue-i18n';
 
+const { t } = useI18n()
 const { getAppMode } = useAppMode()
 const switchMode = () => {
     const form = useForm({
         mode: getAppMode() === 'online' ? 'offline' : 'online'
     })
-
     form.post('/app-mode', {
         preserveState: false
     })
 }
-
 </script>
-
 <template>
     <SidebarMenu>
         <SidebarMenuItem>
@@ -30,7 +29,7 @@ const switchMode = () => {
                 <span
                     :class="['ms-3 text-sm font-medium text-gray-900 dark:text-gray-300', getAppMode() === 'online' ? 'color-success' : 'color-danger']"
                 >
-                    App is {{ getAppMode() }}
+                    {{ t('components.nav_mode_switcher.title', {mode: getAppMode()})}}
                 </span>
             </label>
         </SidebarMenuItem>

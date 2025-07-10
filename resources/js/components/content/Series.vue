@@ -1,24 +1,25 @@
 <script setup lang="ts">
-import { Series } from '@/types';
-import DownloadButton from '@/components/content/DownloadButton.vue';
-import { Link } from '@inertiajs/vue3';
-import FavoritesButton from '@/components/content/FavoritesButton.vue';
-import ShowInFolderButton from '@/components/content/ShowInFolderButton.vue';
-import { useAppMode } from '@/composables/useAppMode';
+import { Series } from '@/types'
+import DownloadButton from '@/components/content/DownloadButton.vue'
+import { Link } from '@inertiajs/vue3'
+import FavoritesButton from '@/components/content/FavoritesButton.vue'
+import ShowInFolderButton from '@/components/content/ShowInFolderButton.vue'
+import { useAppMode } from '@/composables/useAppMode'
 
 interface Props {
-    series: Series;
+    series: Series
     active?: boolean
+    limitHeight?: boolean
+    withFavorites?: boolean
 }
 
 const { isAppOnline } = useAppMode()
-
 const emit = defineEmits(['favorited', 'unfavorited'])
 const props = withDefaults(defineProps<Props>(), {
-});
-function encodePath(path: string) {
-    return path.split('/').map(encodeURIComponent).join('/')
-}
+    limitHeight: true,
+    withFavorites: true
+})
+const encodePath = (path: string) => path.split('/').map(encodeURIComponent).join('/')
 </script>
 
 <template>
@@ -28,45 +29,44 @@ function encodePath(path: string) {
       props.active ? 'ring-2 ring-blue-500' : ''
     ]"
     >
-        <!-- Thumbnail as image inside a link -->
-        <Link
-            :href="route('content-index', { id: props.series.id })"
-            class="block aspect-video w-full"
-        >
+        <!-- Thumbnail -->
+        <Link :href="route('content-index', { id: props.series.id })" class="block aspect-video w-full">
             <img :src="`${encodePath(props.series.thumbnail)}`" alt="Thumbnail" />
         </Link>
 
-        <!-- Info + Actions -->
-        <div class="p-3 flex items-start justify-between gap-2">
-            <div class="flex-1">
+        <!-- Info + Actions (responsive layout) -->
+        <div class="p-3 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <!-- Series Info -->
+            <div class="min-w-0 flex-1">
                 <p class="text-sm font-semibold text-gray-800 dark:text-white truncate">
                     {{ props.series.name }}
                 </p>
-                <p class="text-xs text-gray-500 dark:text-gray-400">
+                <p class="mt-0.5 text-xs text-gray-500 dark:text-gray-400 truncate">
                     {{ props.series.author?.name }}
                 </p>
             </div>
 
-            <div class="flex items-center cursor-pointer gap-2 shrink-0">
+            <!-- Action Buttons -->
+            <div class="flex flex-wrap items-center gap-2 justify-end sm:flex-nowrap">
                 <FavoritesButton
+                    v-if="withFavorites"
                     @unfavorited="(event) => emit('unfavorited', event)"
                     :content="props.series"
                     content-entity="series"
                 />
 
-                <div>
-                    <ShowInFolderButton
-                        v-if="props.series.downloadable_content?.length < 1"
-                        :content="props.series"
-                        content-entity="series"
-                    />
-                    <DownloadButton
-                        v-else-if="isAppOnline()"
-                        :id="props.series.id"
-                        class="hover:text-green-500"
-                        content-entity="series"
-                    />
-                </div>
+                <ShowInFolderButton
+                    v-if="props.series.downloadable_content?.length < 1"
+                    :content="props.series"
+                    content-entity="series"
+                />
+
+                <DownloadButton
+                    v-else-if="isAppOnline()"
+                    :id="props.series.id"
+                    class="hover:text-green-500"
+                    content-entity="series"
+                />
             </div>
         </div>
     </div>

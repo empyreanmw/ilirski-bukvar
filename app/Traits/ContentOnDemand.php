@@ -20,12 +20,12 @@ trait ContentOnDemand
     {
         return $this->getContentByType($contentType)
             ->where('downloaded', true)
-            ->paginate(10);
+            ->smartPaginate($contentType[0]);
     }
 
     public function onlineContent(array $contentType): LengthAwarePaginator
     {
         return $this->getContentByType($contentType)
-            ->paginate(10);
+            ->smartPaginate($contentType[0]);
     }
 }

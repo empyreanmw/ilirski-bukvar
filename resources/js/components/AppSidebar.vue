@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import NavFooter from '@/components/NavFooter.vue';
 import NavMain from '@/components/NavMain.vue';
-import NavUser from '@/components/NavUser.vue';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/vue3';
-import { Cog, History, Cross, Ambulance,Film, Handshake, Heart, DownloadCloud } from 'lucide-vue-next';
+import { Cog, History, Cross, Ambulance,Film, Podcast, Heart, DownloadCloud, ShieldQuestion } from 'lucide-vue-next';
 import AppLogo from './AppLogo.vue';
 
 import { useI18n } from 'vue-i18n'
@@ -35,9 +34,9 @@ const mainNavItems: NavItem[] = [
         icon: Film,
     },
     {
-        title: t('sidebar.friends'),
-        href: '/friends',
-        icon: Handshake,
+        title: t('sidebar.podcasts'),
+        href: '/podcasts',
+        icon: Podcast,
     },
 ];
 
@@ -56,6 +55,12 @@ const footerNavItems: NavItem[] = [
         title: t('sidebar.settings'),
         href: '/settings',
         icon: Cog,
+    },
+    {
+        title: t('sidebar.suggestions'),
+        icon: ShieldQuestion,
+        href: '',
+        event: 'suggestion-clicked'
     },
 ];
 </script>
@@ -81,7 +86,6 @@ const footerNavItems: NavItem[] = [
         <SidebarFooter>
             <NavModeSwitcher class="ml-3" />
             <NavFooter :items="footerNavItems" />
-            <NavUser />
         </SidebarFooter>
     </Sidebar>
     <slot />

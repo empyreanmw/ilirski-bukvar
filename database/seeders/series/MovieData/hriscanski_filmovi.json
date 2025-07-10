@@ -46,5 +46,35 @@
     "thumbnail_url": "https://biblijskifilmovi.com/wp-content/uploads/2025/03/intevrju-s-bogom-portrait.jpeg",
     "download_url": "https://pub-052e2388f66b450f917bc3da25dc5ace.r2.dev/intervju-s-bogom.mp4",
     "url": "https://pub-052e2388f66b450f917bc3da25dc5ace.r2.dev/intervju-s-bogom.mp4"
-  }
+  },
+  {
+    "name": "Ljubav se rađa: Ljubav se nežno rađa (1. film)",
+    "thumbnail_url": "https://biblijskifilmovi.com/wp-content/uploads/2016/02/ljubav-dolazi-nezno.jpg",
+    "download_url": "https://pub-052e2388f66b450f917bc3da25dc5ace.r2.dev/ljubav-se-nezno-radja.mp4",
+    "url": "https://pub-052e2388f66b450f917bc3da25dc5ace.r2.dev/ljubav-se-nezno-radja.mp4"
+  },
+    {
+        "name": "Divna ljubav: Priča o Osiji",
+        "thumbnail_url": "https://biblijskifilmovi.com/wp-content/uploads/2015/08/cudesna-ljuba-prica-o-osiji.jpg",
+        "download_url": "https://pub-052e2388f66b450f917bc3da25dc5ace.r2.dev/divna-ljubav-prica-o-osiji.mp4",
+        "url": "https://pub-052e2388f66b450f917bc3da25dc5ace.r2.dev/divna-ljubav-prica-o-osiji.mp4"
+    },
+    {
+        "name": "Ben Hur",
+        "thumbnail_url": "https://biblijskifilmovi.com/wp-content/uploads/2015/07/ben-hur.jpg",
+        "download_url": "https://drive.usercontent.google.com/download?id=1Z8H86RqXrbFF8flBaLMAsrTmV34czNPO&export=download",
+        "url": "https://drive.google.com/file/d/1Z8H86RqXrbFF8flBaLMAsrTmV34czNPO/preview"
+    },
+    {
+        "name": "Put hrišćanina",
+        "thumbnail_url": "https://biblijskifilmovi.com/wp-content/uploads/2015/04/put-hriscanina.jpg",
+        "download_url": "https://drive.usercontent.google.com/download?id=1H6emiOwOpijL-B37Zu3YsgeTAkNrufNV&export=download",
+        "url": "https://drive.google.com/file/d/1H6emiOwOpijL-B37Zu3YsgeTAkNrufNV/preview"
+    },
+    {
+        "name": "Susret",
+        "thumbnail_url": "https://biblijskifilmovi.com/wp-content/uploads/2015/03/0.jpg",
+        "download_url": "https://drive.usercontent.google.com/u/0/uc?id=1PE2DOeaH67UI9a7PkszcYhwDlsiy7vx3&export=download",
+        "url": "https://drive.google.com/file/d/1PE2DOeaH67UI9a7PkszcYhwDlsiy7vx3/preview"
+    }
 ]

@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if (Schema::hasTable('contents') && !Schema::hasColumn('contents', 'author_id')) {
+        if (Schema::hasTable('contents') && Schema::hasColumn('contents', 'author_id')) {
             Schema::table('contents', function (Blueprint $table) {
                 $table->integer('author_id')->nullable()->change();
             });

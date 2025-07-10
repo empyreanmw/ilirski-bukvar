@@ -55,8 +55,8 @@ const { isAppOnline } = useAppMode()
         </div>
 
         <!-- Info + Actions -->
-        <div class="flex items-start justify-between gap-2 p-4">
-            <!-- Title + Author (truncated) -->
+        <div class="flex flex-wrap items-center justify-between gap-3 p-4">
+        <!-- Title + Author (truncated) -->
             <div class="min-w-0 flex-1">
                 <p class="truncate text-sm font-semibold text-gray-800 dark:text-white">
                     {{ props.video.title }}
@@ -67,8 +67,8 @@ const { isAppOnline } = useAppMode()
             </div>
 
             <!-- Actions -->
-            <div class="flex shrink-0 items-center gap-2">
-                <!-- Favorite -->
+            <div class="flex-shrink-0 flex items-center gap-2 flex-wrap sm:flex-nowrap">
+            <!-- Favorite -->
                 <FavoritesButton  @unfavorited="(event) => emit('unfavorited', event)" :content="props.video" content-entity="content" />
                 <!-- Download -->
                 <div>

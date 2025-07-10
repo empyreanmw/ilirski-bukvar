@@ -8,12 +8,12 @@ class SearchResult
         public int $id,
         public string $title,
         public string $category,
-        public string $author,
+        public ?string $author,
         public string $thumbnail,
         public string $type,
-        public string $href
+        public string $href,
+        public ?string $parentType
     ) {}
-
 
     public function toArray(): array
     {
@@ -24,6 +24,7 @@ class SearchResult
             'author' => $this->author,
             'thumbnail' => $this->thumbnail,
             'href' => $this->href,
+            'parentType' => $this->parentType,
         ];
     }
 }

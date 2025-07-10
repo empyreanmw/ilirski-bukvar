@@ -6,8 +6,8 @@
   },
   {
     "name": "Spasen blagodaću",
-    "id": "2hAqxrqs5r",
-    "url": "https://www.youtube.com/watch?v=2hAqxrqs5r"
+    "id": "2hAqxrqs5rc",
+    "url": "https://www.youtube.com/watch?v=2hAqxrqs5rc"
   },
   {
     "name": "Verovati",
@@ -30,11 +30,6 @@
     "url": "https://www.youtube.com/watch?v=IilfSR4cGPg"
   },
   {
-    "name": "Nepoželjna",
-    "id": "sMik1QvPCN",
-    "url": "https://www.youtube.com/watch?v=sMik1QvPCN"
-  },
-  {
     "name": "Trenutak kasnije 1",
     "id": "ARI3Doz4gLc",
     "url": "https://www.youtube.com/watch?v=ARI3Doz4gLc"
@@ -43,5 +38,50 @@
     "name": "Trenutak kasnije 2",
     "id": "6YCgWRrc0fw",
     "url": "https://www.youtube.com/watch?v=6YCgWRrc0fw"
-  }
+  },
+  {
+    "name": "Nepoželjna",
+    "id": "sMik1QvPCNk",
+    "url": "https://www.youtube.com/watch?v=sMik1QvPCNk"
+  },
+    {
+        "name": "Ljubav počinje",
+        "id": "3fugSxOyyfk",
+        "url": "https://www.youtube.com/watch?v=3fugSxOyyfk"
+    },
+    {
+        "name": "Pobuna u Kautokejnu",
+        "id": "sVpVqJ6URWE",
+        "url": "https://www.youtube.com/watch?v=sVpVqJ6URWE"
+    },
+    {
+        "name": "Apokalipsa 1: Početak kraja",
+        "id": "v_AxCu7sI6c",
+        "url": "https://www.youtube.com/watch?v=v_AxCu7sI6c"
+    },
+    {
+        "name": "Apokalipsa 2: Stakleno more s vatrom",
+        "id": "901KSwuJODI",
+        "url": "https://www.youtube.com/watch?v=901KSwuJODI"
+    },
+    {
+        "name": "Apokalipsa 3: Crni jahač",
+        "id": "-kNGwbgwYqA",
+        "url": "https://www.youtube.com/watch?v=-kNGwbgwYqA"
+    },
+    {
+        "name": "Smelost",
+        "id": "UNIBxeF7rIM",
+        "url": "https://www.youtube.com/watch?v=UNIBxeF7rIM"
+    },
+    {
+        "name": "Pisma Bogu",
+        "id": "RjJqDcn8Qac",
+        "url": "https://www.youtube.com/watch?v=RjJqDcn8Qac"
+    },
+    {
+        "name": "Druga šansa",
+        "id": "KtikZhFQnQU",
+        "url": "https://www.youtube.com/watch?v=KtikZhFQnQU"
+    }
 ]

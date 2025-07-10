@@ -6,6 +6,7 @@ import { Label } from '@/components/ui/label';
 import axios from 'axios';
 import { Button } from '@/components/ui/button';
 import { ref } from 'vue';
+import { useI18n } from 'vue-i18n'
 
 interface Props {
     type: FileType;
@@ -13,6 +14,7 @@ interface Props {
     model: string;
 }
 
+const { t } = useI18n()
 const props = withDefaults(defineProps<Props>(), {
 });
 const modelValue = ref(props.model)
@@ -28,7 +30,6 @@ const selectFolder = (event: MouseEvent):void => {
     });
 }
 const emit = defineEmits(['fileSelected'])
-
 </script>
 
 <template>
@@ -45,10 +46,10 @@ const emit = defineEmits(['fileSelected'])
             <Button
                 @click="selectFolder"
                 type="button"
-                class="inline-flex items-center gap-1 whitespace-nowrap px-4 py-2"
+                class="cursor-pointer inline-flex items-center gap-1 whitespace-nowrap px-4 py-2"
             >
                 <Icon name="folder" />
-                <span>Select</span>
+                <span>{{t('general.form.select')}}</span>
             </Button>
         </div>
         <slot/>

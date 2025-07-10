@@ -7,7 +7,7 @@ enum Category: string
     case HISTORY = 'history';
     case THEOLOGY = 'theology';
     case HEALTH = 'health';
-    case FRIENDS = 'friends';
+    case PODCASTS = 'podcasts';
     case MOVIES = 'movies';
 
 }

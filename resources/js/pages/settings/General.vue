@@ -10,6 +10,9 @@ import SettingsLayout from '@/layouts/settings/Layout.vue';
 import { type BreadcrumbItem, type SharedData, type AppSettings} from '@/types';
 import Dialog from '@/components/content/Dialog.vue';
 import { Button } from '@/components/ui/button';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n()
 
 interface Props {
     mustVerifyEmail: boolean;
@@ -20,7 +23,7 @@ defineProps<Props>();
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'General settings',
+        title: t('settings.general.title'),
         href: '/settings/general',
     },
 ];
@@ -43,15 +46,15 @@ const submit = () => {
 
 <template>
     <AppLayout :breadcrumbs="breadcrumbs">
-        <Head title="General settings" />
+        <Head :title="t('settings.general.title')" />
 
         <SettingsLayout>
             <div class="flex flex-col space-y-6">
-                <HeadingSmall title="General information" description="Update some general information about your app" />
+                <HeadingSmall :title="t('settings.general.subtitle')" :description="t('settings.general.description')" />
 
                 <form @submit.prevent="submit" class="space-y-6">
                     <div class="grid gap-2">
-                        <Label for="content-per-page">Content per page</Label>
+                        <Label for="content-per-page">{{t('settings.general.content_per_page')}}</Label>
                         <Input id="content-per-page" type="number" class="mt-1 block w-full" v-model="form.content_per_page" required />
                         <InputError class="mt-2" :message="form.errors.content_per_page" />
                     </div>
@@ -59,7 +62,7 @@ const submit = () => {
                     <Dialog
                         @file-selected="(event) => form.video_player_path = event"
                         type="file"
-                        title="Select offline video player"
+                        :title="t('settings.general.dialog_video_title')"
                         :model="form.video_player_path">
                             <InputError class="mt-2" :message="form.errors.video_player_path" />
                     </Dialog>
@@ -67,21 +70,21 @@ const submit = () => {
                     <Dialog
                         @file-selected="(event) => form.book_reader_path = event"
                         type="file"
-                        title="Select offline book reader"
+                        :title="t('settings.general.dialog_book_title')"
                         :model="form.book_reader_path">
                         <InputError class="mt-2" :message="form.errors.book_reader_path" />
                     </Dialog>
 
                     <!-- Save Button -->
                     <div class="flex items-center gap-4">
-                        <Button :disabled="form.processing" class="px-6 py-2">Save</Button>
+                        <Button :disabled="form.processing" class="px-6 py-2">{{t('general.form.save')}}</Button>
                         <Transition
                             enter-active-class="transition ease-in-out"
                             enter-from-class="opacity-0"
                             leave-active-class="transition ease-in-out"
                             leave-to-class="opacity-0"
                         >
-                            <p v-show="form.recentlySuccessful" class="text-sm text-neutral-600">Saved.</p>
+                            <p v-show="form.recentlySuccessful" class="text-sm text-neutral-600">{{t('general.form.saved')}}.</p>
                         </Transition>
                     </div>
                 </form>

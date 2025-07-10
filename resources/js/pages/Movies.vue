@@ -10,13 +10,11 @@ import { Head, usePage } from '@inertiajs/vue3';
 import { useI18n } from 'vue-i18n'
 import Tabs from '@/components/ui/tab/Tabs.vue';
 import Tab from '@/components/ui/tab/Tab.vue';
-import { computed, onMounted } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import Series from '@/components/content/Series.vue';
 import Pagination from '@/components/content/Pagination.vue';
 import NoContent from '@/components/content/NoContent.vue';
-import { useAppMode } from '@/composables/useAppMode';
-
-const { isAppOnline } = useAppMode()
+import SpinningLoader from '@/components/SpinningLoader.vue';
 
 interface Props {
     movieSeries: {
@@ -39,6 +37,7 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
+const isLoading = ref(true)
 const page = usePage<Props>();
 const movieSeries = page.props.movieSeries;
 const cartoonSeries = page.props.cartoonSeries;
@@ -51,6 +50,9 @@ onMounted(() => {
             el.scrollIntoView({ behavior: 'smooth' });
         }
     }, 200);
+    setTimeout(() => {
+        isLoading.value = false
+    }, 1000) // Adjust to fit your real loading time
 })
 
 </script>
@@ -59,22 +61,23 @@ onMounted(() => {
     <Head :title="t(`movies.title`)"/>
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
-            <Tabs>
-                <Tab :title="t('general.movies')" icon="Film" :is-active="false">
+            <SpinningLoader v-if="isLoading"/>
+            <Tabs v-show="!isLoading">
+                <Tab title="Movie" icon="Film" :is-active="false">
                     <Pagination :link="movieSeries.links"/>
                     <div v-if="movieSeries.data?.length" class="grid auto-rows-min gap-4 md:grid-cols-3 pt-4">
                         <div class="flex flex-col" v-for="series in movieSeries.data" :key="series.name">
-                            <Series :active="activeItem === series.id" :series="series"/>
+                            <Series :with-favorites="false" :limit-height="false" :active="activeItem === series.id" :series="series"/>
                         </div>
                     </div>
                     <!-- Empty state -->
                     <NoContent v-else icon="Film" type="movie"/>
                 </Tab>
-                <Tab :title="t('general.cartoon')" icon="Film" :is-active="false">
+                <Tab title="Cartoon" icon="Film" :is-active="false">
                     <Pagination :link="cartoonSeries.links"/>
                     <div v-if="cartoonSeries.data?.length" class="grid auto-rows-min gap-4 md:grid-cols-3 pt-4">
                         <div class="flex flex-col" v-for="series in cartoonSeries.data" :key="series.name">
-                            <Series :active="activeItem === series.id" :series="series"/>
+                            <Series :with-favorites="false" :limit-height="false" :active="activeItem === series.id" :series="series"/>
                         </div>
                     </div>
                     <!-- Empty state -->

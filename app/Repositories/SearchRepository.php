@@ -5,6 +5,7 @@ use App\Dtos\SearchResult;
 use App\Enums\ContentEntity;
 use App\Enums\ContentType;
 use App\Models\AppSettings;
+use App\Models\Category;
 use App\Models\Content;
 use App\Models\Series;
 use Illuminate\Support\Collection;
@@ -25,6 +26,7 @@ class SearchRepository
                 thumbnail: $item->thumbnail ?? ($item->thumbnail_url === null ? $item->parent->thumbnail : $item->thumbnail_url),
                 type: $item instanceof Content ? ucfirst($item->type->value) : ucfirst(ContentEntity::SERIES->value),
                 href: $this->getLinkForItem($item, $searchableContent),
+                parentType: $item->parent_type ?? null
             );
         });
     }
@@ -65,6 +67,12 @@ class SearchRepository
 
         // if parent is series, we need to retrieve only videos from that series
         if ($item->parent instanceof Series) {
+            $query = $query->where('parent_id', $item->parent_id);
+        }
+
+        // if we are searching for book, make sure we find a page based on the category of that book
+        // dont search thorugh all books
+        if ($item->parent_type === Category::class) {
             $query = $query->where('parent_id', $item->parent_id);
         }
 

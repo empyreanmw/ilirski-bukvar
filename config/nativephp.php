@@ -130,7 +130,7 @@ return [
         'default' => [
             'queues' => ['default'],
             'memory_limit' => 128,
-            'timeout' => 120,
+            'timeout' => 500,
         ],
     ],
 

@@ -2,6 +2,7 @@
 namespace App\Services;
 
 use App\Enums\AppMode as AppModeEnum;
+use App\Enums\AppModeSwitch;
 use App\Models\AppSettings;
 use Exception;
 use Illuminate\Support\Facades\Http;
@@ -9,26 +10,9 @@ use Inertia\Inertia;
 
 class AppModeService
 {
-    /**
-     * @throws \Exception
-     */
-    public function setMode(?string $mode = null): void
+    public function setMode(AppModeSwitch $appModeSwitch, ?string $mode = null): void
     {
         $appSettings = AppSettings::first();
-
-        try {
-            Http::timeout(10)->get('https://www.google.com');
-        } catch (Exception) {
-            Inertia::share([
-                'appMode' => [
-                    'mode' => $appSettings->mode,
-                    'switch' => 'automatic'
-                ]
-            ]);
-            $appSettings->update(['mode' => AppModeEnum::OFFLINE->value]);
-
-            return;
-        }
 
         if ($mode !== null) {
             $appSettings->mode = $mode;
@@ -38,8 +22,21 @@ class AppModeService
         Inertia::share([
             'appMode' => [
                 'mode' => $appSettings->mode,
-                'switch' => 'manual'
+                'switch' => $appModeSwitch
             ]
         ]);
+    }
+
+    public function checkConnection(): void
+    {
+        try {
+            Http::timeout(10)->get('https://www.google.com/generate_204');
+        } catch (Exception) {
+            $this->setMode(AppModeSwitch::AUTOMATIC, AppModeEnum::OFFLINE->value);
+
+            return;
+        }
+
+        $this->setMode(AppModeSwitch::MANUAL);
     }
 }

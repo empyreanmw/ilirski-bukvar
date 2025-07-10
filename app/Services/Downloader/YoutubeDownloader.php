@@ -10,7 +10,6 @@ use App\Services\Slugify;
 use Exception;
 use File;
 use Illuminate\Support\Facades\Process;
-use Log;
 use SplFileInfo;
 
 class YoutubeDownloader extends Downloader
@@ -33,6 +32,10 @@ class YoutubeDownloader extends Downloader
         }
 
         $buffer = $this->extractProgressInfo($buffer);
+
+        if ($buffer === null) {
+            return;
+        }
 
         broadcast(new DownloadOutput(
             new DownloadOutputDto(
@@ -62,7 +65,7 @@ class YoutubeDownloader extends Downloader
             '-o', "$title.%(ext)s",                  // output template for both video and thumbnail
             '-f', "best[height<={$this->getVideoQuality()}]",
             '--',
-            $content->url
+            $content->download_url
         ];
     }
 
@@ -78,7 +81,7 @@ class YoutubeDownloader extends Downloader
         return base_path(self::YT_DLP_EXE_NAME);
     }
 
-    public function extractProgressInfo(string $buffer): array
+    public function extractProgressInfo(string $buffer): ?array
     {
         $lines = preg_split('/\r\n|\r|\n/', $buffer);
         $lines = array_filter(array_map('trim', $lines));
@@ -96,6 +99,8 @@ class YoutubeDownloader extends Downloader
                 'downloaded' => (int) round($downloadedMiB),
             ]];
         }
+
+        return null;
     }
 
     private function hasError(string $output): bool

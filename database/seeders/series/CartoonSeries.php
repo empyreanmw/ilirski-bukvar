@@ -19,9 +19,9 @@ return [
     [
         'name' => 'Razni Crtani Filmovi',
         'author' => '',
-        'path' =>  base_path('database\seeders\series\MovieData\razni_crtani_filmovi.txt'),
+        'path' =>  base_path('database\seeders\series\MovieData\razni_crtani_filmovi.json'),
         'slug' => 'razni_crtani_filmovi',
-        'thumbnail' => '/thumbnails/series/razni_crtani_filmovi/razni_crtani_filmovi.json',
+        'thumbnail' => '/thumbnails/series/razni_crtani_filmovi/razni_crtani_filmovi.jpg',
         'category' => 'movies'
     ],
 ];

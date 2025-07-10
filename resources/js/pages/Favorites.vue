@@ -59,7 +59,7 @@ const handleUnfavorited = (event: UnfavoriteEvent): void => {
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
             <Tabs>
-                <Tab :title="t('general.series')" icon="Video" :is-active="false">
+                <Tab title="Series" icon="Video" :is-active="false">
                     <div v-if="seriesList?.length" class="grid auto-rows-min gap-4 md:grid-cols-3 pt-4">
                         <div
                             v-for="series in seriesList"
@@ -81,8 +81,8 @@ const handleUnfavorited = (event: UnfavoriteEvent): void => {
                     <NoContent icon="Video" type="video" v-else/>
                     <Pagination :link="videos.links"/>
                 </Tab>
-                <Tab :title="t('general.book')" icon="Book" :is-active="false">
-                    <div v-if="books.data?.length" class="grid auto-rows-min gap-4 md:grid-cols-3 pt-4">
+                <Tab title="book" icon="Book" :is-active="false">
+                    <div v-if="books.length" class="grid auto-rows-min gap-4 md:grid-cols-3 pt-4">
                         <div
                             v-for="book in books"
                             :key="book.title"

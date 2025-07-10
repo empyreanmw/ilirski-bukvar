@@ -5,11 +5,16 @@ import OfflineModeNotification from '@/components/content/OfflineModeNotificatio
 import ContentDownloadBar from '@/components/content/ContentDownloadBar.vue';
 import { onMounted, onUnmounted, ref } from 'vue';
 import SearchModal from '@/components/content/SearchModal.vue';
+import SuggestionModal from '@/components/content/SuggestionModal.vue';
+import { emitter } from '@/utils/eventBus';
+import DownloadPathModal from '@/components/content/DownloadPathModal.vue';
+import { usePage } from '@inertiajs/vue3';
 
 interface Props {
     breadcrumbs?: BreadcrumbItemType[];
 }
 
+const page = usePage()
 const handleKeyDown = (event: KeyboardEvent) => {
     // Only open modal if no input/textarea is already focused
     const tagName = (event.target as HTMLElement).tagName.toLowerCase();
@@ -19,15 +24,23 @@ const handleKeyDown = (event: KeyboardEvent) => {
         event.preventDefault(); // Block default only if not focused
         setTimeout(() => {
             searchModalRef.value?.open();
-        }, 0); // 🔥 wait for next tick/microtask
+        }, 0);
     } else if (event.key === 'Escape') {
         searchModalRef.value?.close();
     }
 };
-
+const suggestionModal = ref(null)
+const downloadPathModal = ref(null)
+const handleSuggestionClicked = () => {
+    suggestionModal.value?.open()
+}
 const searchModalRef = ref<InstanceType<typeof SearchModal> | null>(null);
 onMounted(() => {
+    if (page.props.downloadPathMissing) {
+        downloadPathModal.value?.open()
+    }
     window.addEventListener('keydown', handleKeyDown);
+    emitter.on('suggestion-clicked', handleSuggestionClicked)
 });
 
 onUnmounted(() => {
@@ -41,7 +54,9 @@ withDefaults(defineProps<Props>(), {
 
 <template>
     <AppLayout :breadcrumbs="breadcrumbs">
+        <DownloadPathModal ref="downloadPathModal" v-if="page.props.downloadPathMissing" />
         <ContentDownloadBar/>
+        <SuggestionModal ref="suggestionModal"/>
         <OfflineModeNotification/>
         <SearchModal ref="searchModalRef" />
         <slot />

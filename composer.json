@@ -13,9 +13,10 @@
         "inertiajs/inertia-laravel": "^2.0",
         "kclauhk/youtube-downloader": "^4.2",
         "laravel/framework": "^12.0",
+        "laravel/nightwatch": "^1.7",
         "laravel/tinker": "^2.10.1",
-        "tightenco/ziggy": "^2.4",
-        "nativephp/electron": "^1.0"
+        "nativephp/electron": "^1.0",
+        "tightenco/ziggy": "^2.4"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
