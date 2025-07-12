@@ -90,7 +90,7 @@ export default {
         general: {
             title: 'Opšte',
             subtitle: 'Opšte Informacije',
-            description: 'Ažuriraj opšte informacije o svojoj aplikaciji',
+            description: 'Ažuriraj opšte informacije o aplikaciji',
             dialog_video_title: 'Izaberi offline video plejer',
             dialog_book_title: 'Izaberi offline aplikaciju za otvaranje knjiga',
             content_per_page: 'Broj sadržaja po stranici'
