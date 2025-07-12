@@ -61,6 +61,6 @@ class QueueJobRequestsRepository
             ELSE 2
         END
     ", [QueueJobRequestStatus::IN_PROGRESS, QueueJobRequestStatus::QUEUED])
-            ->orderByDesc('created_at');
+            ->orderBy('created_at');
     }
 }

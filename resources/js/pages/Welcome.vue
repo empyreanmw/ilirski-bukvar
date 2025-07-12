@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { Head, Link } from '@inertiajs/vue3';
+import { Head, Link, usePage } from '@inertiajs/vue3';
+const page = usePage()
 </script>
 
 <template>
@@ -65,7 +66,7 @@ import { Head, Link } from '@inertiajs/vue3';
 
         <!-- Footer -->
         <footer class="w-full border-t border-[#e5e5e5] dark:border-[#2a2a29] p-4 text-center text-xs text-[#888] dark:text-[#777]">
-            Verzija 1.0 • Ilirski Bukvar © {{ new Date().getFullYear() }}
+            {{page.props.version}} • Ilirski Bukvar © {{ new Date().getFullYear() }}
         </footer>
     </div>
 </template>

@@ -225,7 +225,7 @@ const confirmDelete = () => {
                                             class="cursor-pointer rounded border-gray-300 text-primary-600 focus:ring-primary-500"
                                         />
                                         <label class="text-sm text-gray-700 dark:text-gray-300 capitalize">
-                                            {{ category.name }}
+                                            {{ t('general.' + category.name) }}
                                         </label>
                                     </div>
                                     <!-- Size Badge -->

@@ -15,7 +15,7 @@ class YoutubeSeriesSeeder extends ContentSeeder implements SeriesContent
     use SeriesCreation;
     private const SERIES_FILE_PATH = 'database\seeders\series\YoutubeSeries.php';
 
-    protected function saveContent(array $contentData): void
+    public function saveContent(array $contentData): void
     {
         Content::updateOrCreate(
             [

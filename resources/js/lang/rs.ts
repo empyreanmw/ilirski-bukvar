@@ -109,7 +109,7 @@ export default {
             subtitle: 'Informacije o profilu',
             description: 'Ažuriraj informacije o svom profilu',
             manage_downloads: 'Preuzet sadržaj',
-            manage_downloads_description: 'Upravljaj preuzetim zadržajem',
+            manage_downloads_description: 'Upravljaj preuzetim sadržajem',
             download_path: 'Putanja gde se čuva preuzet sadržaj',
             video_quality: 'Video kvalitet',
             download_all_title: 'Preuzmi',
