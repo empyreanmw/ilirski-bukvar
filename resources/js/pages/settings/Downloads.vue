@@ -139,13 +139,24 @@ const confirmDelete = () => {
                         <div>
                             <Label for="video_quality">{{t('settings.downloads.video_quality')}}</Label>
                             <select
-                                id="video_quality"
-                                class="mt-1 block w-full rounded-md border border-gray-300 bg-white text-gray-900 text-sm shadow-sm focus:border-primary-500 focus:ring focus:ring-primary-500 focus:ring-opacity-50 px-3 py-2"
                                 v-model="form.video_quality"
                                 required
+                                class="appearance-none w-full h-9 px-3 py-2 rounded-md text-base md:text-sm border border-input shadow-xs outline-none bg-white text-gray-900
+         dark:bg-input/30 dark:text-white dark:border-gray-600
+         focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]
+         disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50"
                             >
-                                <option v-for="videoQuality in videoQualities" :key="videoQuality">{{ videoQuality }}</option>
+                                <option
+                                    v-for="videoQuality in videoQualities"
+                                    :key="videoQuality"
+                                    :value="videoQuality"
+                                    class="bg-white text-gray-900 dark:bg-input/30 dark:text-white"
+                                >
+                                    {{ videoQuality }}
+                                </option>
                             </select>
+
+
                             <InputError class="mt-2" :message="form.errors.video_quality" />
                         </div>
                         <Dialog
@@ -179,7 +190,7 @@ const confirmDelete = () => {
 
                     <div class="mt-6 grid grid-cols-2 gap-6">
                         <!-- Download all -->
-                        <div class="flex items-start gap-4 p-4 border rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
+                        <div class="flex items-start gap-4 p-4 border rounded-lg bg-gray-50 dark:bg-gray-900 dark:border-gray-700">
                             <div class="flex-shrink-0 mt-1">
                                 <Icon name="download" class="text-primary-600 w-5 h-5" />
                             </div>
@@ -191,7 +202,7 @@ const confirmDelete = () => {
                         </div>
 
                         <!-- Delete all -->
-                        <div class="flex items-start gap-4 p-4 border rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
+                        <div class="flex items-start gap-4 p-4 border rounded-lg bg-gray-50 dark:bg-gray-900 dark:border-gray-700">
                             <div class="flex-shrink-0 mt-1">
                                 <Icon name="trash" class="text-red-600 w-5 h-5" />
                             </div>

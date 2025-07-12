@@ -5,7 +5,7 @@
             class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 dark:bg-black/70 backdrop-blur-sm"
         >
             <div
-                class="bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 rounded-xl shadow-xl p-8 w-full max-w-lg mx-4 relative border border-gray-200 dark:border-gray-700"
+                class="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 rounded-xl shadow-xl p-8 w-full max-w-lg mx-4 relative border border-gray-200 dark:border-gray-700"
             >
                 <!-- Close Button -->
                 <button
