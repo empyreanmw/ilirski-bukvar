@@ -26,7 +26,6 @@ const goTo = (url: string | null): void => {
 }
 
 const translateLabel = (label: string): string => {
-    console.log(props.link)
     if (label === '&laquo; Previous') return t('components.pagination.previous')
     if (label === 'Next &raquo;') return t('components.pagination.next')
     return label

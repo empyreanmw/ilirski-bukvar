@@ -27,5 +27,3 @@ if (!fs.existsSync(outputDir)) {
 
 // ✅ Now write the file
 fs.writeFileSync(outputPath, JSON.stringify(flat, null, 2), 'utf8');
-
-console.log('✅ Translation file exported to Laravel:', outputPath);

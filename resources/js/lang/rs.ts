@@ -144,7 +144,7 @@ export default {
         },
         appearance: {
             title: 'Izgled',
-            subtitle: 'Izlged Aplikacije',
+            subtitle: 'Izgled Aplikacije',
             description: 'Izmenite izgled vaše aplikacije',
         }
     },
