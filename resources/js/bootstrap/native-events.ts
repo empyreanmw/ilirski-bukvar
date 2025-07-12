@@ -18,4 +18,8 @@ if (!window.__nativeEventsRegistered) {
     Native.on("App\\Events\\RequestStatusUpdated", (payload) => {
         emitter.emit('request-status-updated', payload);
     });
+
+    Native.on("Native\\Laravel\\Events\\AutoUpdater\\UpdateDownloaded", (payload) => {
+        emitter.emit('update-downloaded', payload);
+    })
 }

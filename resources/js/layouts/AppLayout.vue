@@ -1,4 +1,4 @@
-<script setup lang="ts">
+q<script setup lang="ts">
 import AppLayout from '@/layouts/app/AppSidebarLayout.vue';
 import type { BreadcrumbItemType } from '@/types';
 import OfflineModeNotification from '@/components/content/OfflineModeNotification.vue';
@@ -9,6 +9,7 @@ import SuggestionModal from '@/components/content/SuggestionModal.vue';
 import { emitter } from '@/utils/eventBus';
 import DownloadPathModal from '@/components/content/DownloadPathModal.vue';
 import { usePage } from '@inertiajs/vue3';
+import UpdateDownloadedModal from '@/components/content/UpdateDownloadedModal.vue';
 
 interface Props {
     breadcrumbs?: BreadcrumbItemType[];
@@ -31,8 +32,12 @@ const handleKeyDown = (event: KeyboardEvent) => {
 };
 const suggestionModal = ref(null)
 const downloadPathModal = ref(null)
+const updateModal = ref(null)
 const handleSuggestionClicked = () => {
     suggestionModal.value?.open()
+}
+const handleUpdateDownloaded = () => {
+    updateModal.value?.open()
 }
 const searchModalRef = ref<InstanceType<typeof SearchModal> | null>(null);
 onMounted(() => {
@@ -40,6 +45,8 @@ onMounted(() => {
         downloadPathModal.value?.open()
     }
     window.addEventListener('keydown', handleKeyDown);
+
+    emitter.on('update-downloaded', handleUpdateDownloaded)
     emitter.on('suggestion-clicked', handleSuggestionClicked)
 });
 
@@ -50,6 +57,7 @@ onUnmounted(() => {
 withDefaults(defineProps<Props>(), {
     breadcrumbs: () => [],
 });
+
 </script>
 
 <template>
@@ -57,6 +65,7 @@ withDefaults(defineProps<Props>(), {
         <DownloadPathModal ref="downloadPathModal" v-if="page.props.downloadPathMissing" />
         <ContentDownloadBar/>
         <SuggestionModal ref="suggestionModal"/>
+        <UpdateDownloadedModal ref="updateModal"/>
         <OfflineModeNotification/>
         <SearchModal ref="searchModalRef" />
         <slot />

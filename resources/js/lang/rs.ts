@@ -80,6 +80,13 @@ export default {
             title: "Imate nešto na umu?",
             description: "Voleli bismo da čujemo tvoje predloge, sugestije za dodavanje sadržaja, ili jednostavno lepe reči."
         },
+        update_downloaded: {
+            title: "Nova Verzija Aplikacije",
+            description: "Nova verzija aplikacije je upravo preuzeta.",
+            description_one: "Pristiskom na dugme 'Instaliraj' će te izaći iz aplikacije i automatski instalirati novu verziju.",
+            description_two: "Nakon toga, aplikacija će se posle par minuta automatski pokrenuti.",
+            install: "Instaliraj"
+        },
         nav_mode_switcher: {
             title: "App je {mode}"
         }

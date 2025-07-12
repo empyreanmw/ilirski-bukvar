@@ -6,6 +6,7 @@ use App\Http\Controllers\Actions\CancelDownloadController;
 use App\Http\Controllers\Actions\ContentDownloadController;
 use App\Http\Controllers\Actions\GetActiveDownloadsController;
 use App\Http\Controllers\Actions\OpenFileController;
+use App\Http\Controllers\Actions\QuitAndUpdateController;
 use App\Http\Controllers\Actions\SearchController;
 use App\Http\Controllers\Actions\DeleteAllContentController;
 use App\Http\Controllers\Actions\DialogController;
@@ -28,3 +29,4 @@ Route::post('cancel-all-downloads', CancelAllDownloadController::class)->name('c
 Route::post('download-all', DownloadAllController::class)->name('download-all');
 Route::post('delete-all', DeleteAllContentController::class)->name('delete-all');
 Route::get('content/downloads/active', GetActiveDownloadsController::class)->name('get-active-downloads');
+Route::get('quit-and-update', QuitAndUpdateController::class)->name('quit-and-update');
