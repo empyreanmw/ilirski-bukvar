@@ -8,11 +8,11 @@ const visible = ref(false)
 const email = ref('')
 const suggestion = ref('')
 
-function open() {
+const open = () => {
     visible.value = true
 }
 
-function close() {
+const close = () => {
     visible.value = false
     email.value = ''
     suggestion.value = ''
