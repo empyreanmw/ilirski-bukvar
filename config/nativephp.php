@@ -139,10 +139,11 @@ return [
      */
     'prebuild' => [
         'npm run build',
+        'php artisan optimize'
     ],
 
     'postbuild' => [
-        // 'rm -rf public/build',
+        'npm run release'
     ],
 
     /**
