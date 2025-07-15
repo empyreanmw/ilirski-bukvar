@@ -143,7 +143,7 @@ return [
     ],
 
     'postbuild' => [
-        'npm run release'
+    
     ],
 
     /**
