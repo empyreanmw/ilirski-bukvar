@@ -13,6 +13,7 @@ export default {
     general: {
         history: "Istorija",
         movie: "Filmovi",
+        movies: "Filmovi",
         theology: "Teologija",
         podcasts: "Podkast",
         health: "Zdravlje",

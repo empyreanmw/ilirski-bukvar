@@ -82,7 +82,6 @@ const { isAppOnline } = useAppMode()
                         :id="props.video.id"
                         content-entity="content"
                         class="hover:text-green-500"
-                        style="position: relative; top: -2px"
                     />
                 </div>
             </div>

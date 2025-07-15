@@ -37,7 +37,7 @@ defineExpose({ open, close })
                     </p>
                     <a href="mailto:empyreamw@gmail.com"
                        class="text-lg font-semibold text-blue-700 dark:text-blue-300 underline underline-offset-2 hover:text-blue-900 dark:hover:text-white transition">
-                        empyreanmw@gmail.com
+                        kontakt@ilirski-bukvar.rs
                     </a>
                 </div>
             </div>
