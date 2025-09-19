@@ -5,18 +5,25 @@ import { useForm } from '@inertiajs/vue3';
 import FavoritesButton from '@/components/content/FavoritesButton.vue';
 import ShowInFolderButton from '@/components/content/ShowInFolderButton.vue';
 import { useAppMode } from '@/composables/useAppMode';
+import { reactive } from 'vue'
+import CompleteContent from './CompleteContent.vue';
+import { useI18n } from 'vue-i18n'
 
 interface Props {
     book: Content;
     active?: boolean
 }
 
+const { t } = useI18n()
 const props = withDefaults(defineProps<Props>(), {
     active: false
 });
 const emit = defineEmits(['favorited', 'unfavorited'])
 const { isAppOnline } = useAppMode()
-
+const bookState = reactive({ ...props.book })
+const handleCompletionUpdate = (value: boolean) => {
+  bookState.completed = value
+}
 const openFile = (id: number): void => {
     const form = useForm({
         contentId: id,
@@ -80,7 +87,20 @@ const openFile = (id: number): void => {
                         class="hover:text-green-500 align-middle"
                     />
                 </template>
+    <CompleteContent
+      @update:completed="handleCompletionUpdate"
+      :completed="bookState.completed"
+      :id="props.book.id"
+    />
             </div>
         </div>
+        <div class="pl-4 pb-2 h-6 flex items-center space-x-2">
+  <span
+    v-if="bookState.completed"
+    class="inline-block rounded bg-green-100 px-2 py-0.5 text-xs font-medium text-green-800 dark:bg-green-900 dark:text-green-200"
+  >
+    {{ t('general.read') }}
+  </span>
+</div>
     </div>
 </template>

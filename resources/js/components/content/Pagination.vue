@@ -9,11 +9,21 @@ const { t } = useI18n()
 
 interface Props {
     link: Link[]
-    isBook?: boolean
+    isBook?: boolean,
+    lastWatchedUrl?: string
 }
 const props = withDefaults(defineProps<Props>(), {
     isBook: false
 })
+
+const goToLastWatched = (): void => {
+  if (props.lastWatchedUrl) {
+    router.visit(props.lastWatchedUrl, {
+      preserveState: false,
+      preserveScroll: true,
+    })
+  }
+}
 
 const goTo = (url: string | null): void => {
     if (url) {
@@ -80,18 +90,27 @@ const visibleLinks = computed(() => {
     <div v-if="visibleLinks.length > 3" class="overflow-x-auto select-none">
         <div class="inline-flex gap-2 px-1">
             <button
-                v-for="(link, index) in visibleLinks"
-                :key="index"
-                @click="goTo(link.url)"
-                :disabled="!link.url"
-                v-html="translateLabel(link.label)"
-                class="px-4 py-2 text-sm font-medium rounded-lg border transition-all duration-200 whitespace-nowrap"
-                :class="{
-          'bg-blue-600 text-white shadow-md ring-2 ring-blue-300': link.active,
-          'bg-white text-gray-700 hover:bg-gray-100 hover:text-black dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700': !link.active,
-          'opacity-50 cursor-not-allowed': !link.url
-        }"
+            v-for="(link, index) in visibleLinks"
+            :key="index"
+            @click="goTo(link.url)"
+            :disabled="!link.url"
+            v-html="translateLabel(link.label)"
+            class="px-4 py-2 text-sm font-medium rounded-lg border transition-all duration-200 whitespace-nowrap"
+            :class="{
+                'bg-blue-600 text-white shadow-md ring-2 ring-blue-300': link.active,
+                'bg-white text-gray-700 hover:bg-gray-100 hover:text-black dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700': !link.active,
+                'opacity-50 cursor-not-allowed': !link.url
+            }"
             />
+            <!-- Poslednje pogledano -->
+            <button
+            v-if="lastWatchedUrl"
+            @click="goToLastWatched"
+            class="px-4 py-2 text-sm font-medium rounded-lg border transition-all duration-200 whitespace-nowrap
+                    bg-white text-gray-700 hover:bg-gray-100 hover:text-black
+                    dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700">
+            {{ t('components.pagination.last_watched') }}
+            </button>
         </div>
     </div>
 </template>

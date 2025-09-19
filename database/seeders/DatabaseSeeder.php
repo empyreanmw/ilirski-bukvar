@@ -17,11 +17,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call([
-            MovieSeriesSeeder::class,
-            YoutubeSeriesSeeder::class,
-            CartoonSeriesSeeder::class,
-            BooksSeeder::class,
-        ]);
+        // $this->call([
+        //     MovieSeriesSeeder::class,
+        //     YoutubeSeriesSeeder::class,
+        //     CartoonSeriesSeeder::class,
+        //     BooksSeeder::class,
+        // ]);
     }
 }

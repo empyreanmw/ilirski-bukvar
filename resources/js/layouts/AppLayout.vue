@@ -10,6 +10,8 @@ import { emitter } from '@/utils/eventBus';
 import DownloadPathModal from '@/components/content/DownloadPathModal.vue';
 import { usePage } from '@inertiajs/vue3';
 import UpdateDownloadedModal from '@/components/content/UpdateDownloadedModal.vue';
+import axios from 'axios';
+import SpinningLoader from '@/components/SpinningLoader.vue';
 
 interface Props {
     breadcrumbs?: BreadcrumbItemType[];
@@ -40,7 +42,19 @@ const handleUpdateDownloaded = () => {
     updateModal.value?.open()
 }
 const searchModalRef = ref<InstanceType<typeof SearchModal> | null>(null);
+const isContentUpdateOngoing = ref(false);
+
 onMounted(() => {
+    console.log(page.props)
+    if (page.props.contentVersion || page.props.contentVersion === 0) {
+        isContentUpdateOngoing.value = true
+        axios.post('/content/update', {
+            content_version: page.props.contentVersion
+        })
+        .then(response => {
+            isContentUpdateOngoing.value = false
+        })
+    }
     if (page.props.downloadPathMissing) {
         downloadPathModal.value?.open()
     }
@@ -68,6 +82,7 @@ withDefaults(defineProps<Props>(), {
         <UpdateDownloadedModal ref="updateModal"/>
         <OfflineModeNotification/>
         <SearchModal ref="searchModalRef" />
+        <SpinningLoader title="Content is updating, please wait.." class="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 backdrop-blur-sm" v-if="isContentUpdateOngoing"/>
         <slot />
     </AppLayout>
 </template>

@@ -6,7 +6,6 @@ use App\Traits\ContentOnDemand;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Support\Collection;
 
 class Series extends Model
 {
@@ -33,5 +32,10 @@ class Series extends Model
     {
         return $this->hasMany(Content::class, 'parent_id')
             ->where('downloaded', false);
+    }
+
+    public function lastWatched(): Content
+    {
+        return $this->content->where('last_watched', true)->first();
     }
 }
