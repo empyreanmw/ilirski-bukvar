@@ -51,7 +51,13 @@ export default {
         download_path_modal: {
             title: 'Odaberite putanju za preuzimanje sadržaja',
             subtitle: 'Ovo je putanja na vašem uredjaju, gde će sadržaj biti preuzet',
-        }
+        },
+        messages: {
+            content_completion_success: 'Sadržaj je obeležen kao "pregledan"'
+        },
+        read: 'Pročitano',
+        watched: 'Pogledano',
+        last_watch: 'Poslednje pogledano'
     },
     components: {
         content_download_bar: {
@@ -68,7 +74,8 @@ export default {
             previous: "Prethodna",
             next: "Sledeća",
             first: "Prva",
-            last: "Poslednja"
+            last: "Poslednja",
+            last_watched: "Poslednje pogledano"
         },
         search_bar: {
             no_results: "Nije pronadjen rezultat za ",

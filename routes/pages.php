@@ -9,10 +9,11 @@ use App\Http\Controllers\Pages\HistoryIndexController;
 use App\Http\Controllers\Pages\MoviesIndexController;
 use App\Http\Controllers\Pages\TheologyIndexController;
 use App\Http\Middleware\AppMode;
+use App\Http\Middleware\ContentChecker;
 use App\Http\Middleware\HandleMissingDownloadPath;
 
 //Pages
-Route::middleware([AppMode::class, HandleMissingDownloadPath::class])->group(function () {
+Route::middleware([AppMode::class, HandleMissingDownloadPath::class, ContentChecker::class])->group(function () {
     Route::get('history', HistoryIndexController::class)->name('history');
     Route::get('theology', TheologyIndexController::class)->name('theology');
     Route::get('health', HealthIndexController::class)->name('health');

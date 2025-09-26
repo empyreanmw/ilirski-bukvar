@@ -17,7 +17,7 @@ class UpdateDownloadSettingsRequest extends FormRequest
     {
         return [
             'video_quality' => ['integer', 'nullable'],
-            'download_path' => ['string', 'required']
+         //   'download_path' => ['string', 'required']
         ];
     }
 

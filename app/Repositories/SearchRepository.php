@@ -31,6 +31,11 @@ class SearchRepository
         });
     }
 
+    public function getLastWatchedContentLink(Content $content, Collection $seriesContent) 
+    {
+        return $this->getLinkForItem($content, $seriesContent);
+    }
+
     protected function getLinkForItem(Series|Content $item, $results): string
     {
         if ($item instanceof Content) {
@@ -59,21 +64,25 @@ class SearchRepository
     {
         $perPage = AppSettings::first()->content_per_page;
 
-        $query = match ($item->type) {
-            ContentType::VIDEO => $results['videos'],
-            ContentType::BOOK => $results['books'],
-            default => $results['series'],
-        };
+        $query = $results;
+        //if we doing the general search then we need few extra steps. Targer search with custom results will always be a collection
+        if (!$results instanceof Collection) {
+            $query = match ($item->type) {
+                ContentType::VIDEO => $results['videos'],
+                ContentType::BOOK => $results['books'],
+                default => $results['series'],
+            };
 
-        // if parent is series, we need to retrieve only videos from that series
-        if ($item->parent instanceof Series) {
-            $query = $query->where('parent_id', $item->parent_id);
-        }
+            // if parent is series, we need to retrieve only videos from that series
+            if ($item->parent instanceof Series) {
+                $query = $query->where('parent_id', $item->parent_id);
+            }
 
-        // if we are searching for book, make sure we find a page based on the category of that book
-        // dont search thorugh all books
-        if ($item->parent_type === Category::class) {
-            $query = $query->where('parent_id', $item->parent_id);
+            // if we are searching for book, make sure we find a page based on the category of that book
+            // dont search thorugh all books
+            if ($item->parent_type === Category::class) {
+                $query = $query->where('parent_id', $item->parent_id);
+            }
         }
 
         $matchingIds = $query->pluck('id')->toArray();

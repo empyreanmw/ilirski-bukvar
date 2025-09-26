@@ -22,7 +22,7 @@ class DialogService
         if ($defaultPath !== null) {
             $dialog->defaultPath($defaultPath);
         }
-
+        
         return $dialog
             ->open();
     }

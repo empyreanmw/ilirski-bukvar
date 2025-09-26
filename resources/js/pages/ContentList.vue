@@ -48,6 +48,20 @@ const handleScrollToSearchFile = () => {
         }
     }, 1200);
 }
+const handleLastWatched = (newLastWatchedId: number) => {
+  items.value = items.value.map(item => ({
+    ...item,
+    last_watched: item.id === newLastWatchedId,
+    completed: item.completed
+  }));
+};
+
+const handleCompleted = (completedId: number, value: boolean) => {
+  items.value = items.value.map(item => ({
+    ...item,
+    completed: item.id === completedId ? value : item.completed,
+  }));
+};
 
 onMounted(() => {
     handleScrollToSearchFile()
@@ -69,12 +83,12 @@ onBeforeUnmount(() => {
         <div class="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
             <SpinningLoader v-if="isLoading"/>
             <div v-show="!isLoading">
-                <Pagination v-if="items.length" :link="pagination"></Pagination>
+                <Pagination v-if="items.length" :lastWatchedUrl="page.props.lastWatchedUrl" :link="pagination"></Pagination>
                 <div v-if="items.length" class="grid auto-rows-min gap-4 md:grid-cols-3 pt-4">
                     <div
                         v-for="content in items" :key="content.id"
                     >
-                        <Video :id="'video-' + content.id" :active="activeItem === content.id" :video="content"/>
+                        <Video @last-watched="handleLastWatched" @completed="handleCompleted" :id="'video-' + content.id" :active="activeItem === content.id" :video="content"/>
                     </div>
                 </div>
                 <NoContent v-else icon="Video" type="video"/>
