@@ -17,7 +17,8 @@ class AppSettingsSeeder extends Seeder
             'mode' => 'online',
             'content_per_page' => 8,
             'video_quality' => 720,
-            'download_path' => null
+            'download_path' => null,
+            'content_version' => 0
         ]);
     }
 }
