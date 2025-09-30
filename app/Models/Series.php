@@ -34,8 +34,10 @@ class Series extends Model
             ->where('downloaded', false);
     }
 
-    public function lastWatched(): Content
+    public function lastWatched(): ?Content
     {
-        return $this->content->where('last_watched', true)->first();
+        // If the relation isn't loaded, this will lazy-load it once.
+        return $this->content->firstWhere('last_watched', true)
+            ?? $this->content->first();
     }
 }
