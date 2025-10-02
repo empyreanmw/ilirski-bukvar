@@ -42,6 +42,9 @@ export default {
         no_cartoon: "Nema dostupnih crtanih filmova",
         no_cartoon_description: "Trenutno ne postoji ni jedan dostupan crtani film",
         download_all: "Preuzmi",
+        content_update: {
+            message: 'Sadržaj se ažurira, molimo sačekajte...'
+        },
         form: {
             select: "Selektuj",
             save: "Sačuvaj",

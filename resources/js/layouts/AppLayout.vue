@@ -12,11 +12,13 @@ import { usePage } from '@inertiajs/vue3';
 import UpdateDownloadedModal from '@/components/content/UpdateDownloadedModal.vue';
 import axios from 'axios';
 import SpinningLoader from '@/components/SpinningLoader.vue';
+import { useI18n } from 'vue-i18n';
 
 interface Props {
     breadcrumbs?: BreadcrumbItemType[];
 }
 
+const { t } = useI18n()
 const page = usePage()
 const handleKeyDown = (event: KeyboardEvent) => {
     // Only open modal if no input/textarea is already focused
@@ -71,6 +73,7 @@ onUnmounted(() => {
 withDefaults(defineProps<Props>(), {
     breadcrumbs: () => [],
 });
+const contentMessage = t('general.content_update.message')
 
 </script>
 
@@ -82,7 +85,7 @@ withDefaults(defineProps<Props>(), {
         <UpdateDownloadedModal ref="updateModal"/>
         <OfflineModeNotification/>
         <SearchModal ref="searchModalRef" />
-        <SpinningLoader title="Content is updating, please wait.." class="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 backdrop-blur-sm" v-if="isContentUpdateOngoing"/>
+        <SpinningLoader :title="contentMessage" class="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 backdrop-blur-sm" v-if="isContentUpdateOngoing"/>
         <slot />
     </AppLayout>
 </template>
