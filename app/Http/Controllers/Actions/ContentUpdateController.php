@@ -34,6 +34,6 @@ class ContentUpdateController extends Controller
             'content_version' => $content['version'],
         ]);
 
-        return response()->json(200);
+        return redirect()->to('/history');
     }
 }
