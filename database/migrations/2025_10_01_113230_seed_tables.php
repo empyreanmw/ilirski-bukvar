@@ -3,7 +3,7 @@
 use Database\Seeders\Books\BooksSeeder;
 use Database\Seeders\Series\CartoonSeriesSeeder;
 use Database\Seeders\Series\MovieSeriesSeeder;
-use Database\Seeders\Series\YoutubeSeriesSeeder
+use Database\Seeders\Series\YoutubeSeriesSeeder;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Facades\DB;
 
