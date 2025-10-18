@@ -16,9 +16,7 @@ trait DownloadableThumbnails
     public function downloadThumbnail(string $url, string $filename, ?array $series = null): ?string
     {
         try {
-        @ini_set('max_execution_time', '300'); // or '0' for unlimited
-@set_time_limit(300);
-$response = Http::timeout(300)->connectTimeout(15)->retry(2, 500)->get($url);
+        $response = Http::timeout(300)->connectTimeout(15)->retry(2, 500)->get($url);
         } catch (Throwable $throwable) {
             Log::error($throwable->getMessage());
             return null;
