@@ -93,7 +93,7 @@ onBeforeUnmount(() => {
                         </div>
                     </div>
                     <!-- Empty state -->
-                    <NoContent v-else icon="Video" type="Video"/>
+                    <NoContent v-else icon="Video" type="video"/>
                 </Tab>
                 <Tab v-if="isTabNeeded('book')" title="Book" icon="Book" :is-active="false">
                     <div class="grid gap-4 mt-6 sm:grid-cols-[1fr_auto] items-start">

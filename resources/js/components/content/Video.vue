@@ -146,3 +146,18 @@ watch(
         </div>
     </div>
 </template>
+
+<style scoped>
+/* Ensure Video.js fills the box */
+:deep(.video-js) {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Belt-and-suspenders centering for the big play button */
+:deep(.vjs-big-play-button) {
+  left: 50% !important;
+  top: 50% !important;
+  transform: translate(-50%, -50%) !important;
+}
+</style>

@@ -49,7 +49,7 @@ trait DownloadableThumbnails
     protected function generateThumbnailBasePath($series): string
     {
         if ($series !== null) {
-            return sprintf('\thumbnails\\series\\%s\\',  Slugify::run($series['name']));
+            return sprintf('/thumbnails/series/%s/',  Slugify::run($series['name']));
         }
 
         return 'thumbnails/books/';
