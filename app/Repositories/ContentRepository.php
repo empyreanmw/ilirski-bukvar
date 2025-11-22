@@ -8,6 +8,7 @@ use App\Enums\ContentType;
 use App\Models\Category as CategoryModel;
 use App\Models\Content;
 use App\Models\Series;
+use App\Services\ContentCheckerService;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
@@ -43,6 +44,8 @@ class ContentRepository
                 $item->category = $category->name;
                 return $item;
         });
+
+        (new ContentCheckerService ())->checkForMissingContentThumbnails($series);
 
         return $series;
     }

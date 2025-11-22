@@ -22,7 +22,7 @@ class BookContentSeeder
                 'title' => $contentData['name'],
                 'parent_id' => Category::where('name', $contentData['category'])->first()->id ?? null,
                 'author_id' => $contentData['author_id'] ?? null,
-                'thumbnail_url' => $this->downloadThumbnail($contentData['thumbnail_url'], $this->getFileName($contentData)),
+                'thumbnail_url' => $this->downloadThumbnail($contentData['thumbnail_url'], $this->getFileName($contentData['name'])),
                 'url' => $contentData['url'],
                 'downloaded' => false,
                 'parent_type' => Category::class,

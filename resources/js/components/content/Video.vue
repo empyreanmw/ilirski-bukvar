@@ -92,7 +92,7 @@ watch(
                     {{ props.video.title }}
                 </p>
                 <p class="mt-0.5 truncate text-xs text-gray-500 dark:text-gray-400">
-                    {{ props.video.author.name }}
+                    {{ props.video.author?.name }}
                 </p>
             </div>
 

@@ -8,9 +8,9 @@ use Throwable;
 
 trait DownloadableThumbnails
 {
-    public function getFileName(array $contentData): string
+    public function getFileName(string $name): string
     {
-        return sprintf('%s.jpg', Slugify::run($contentData['name']));
+        return sprintf('%s.jpg', Slugify::run($name));
     }
 
     public function downloadThumbnail(string $url, string $filename, ?array $series = null): ?string

@@ -31,7 +31,11 @@ const encodePath = (path: string) => path.split('/').map(encodeURIComponent).joi
     >
         <!-- Thumbnail -->
         <Link :href="route('content-index', { id: props.series.id })" class="block aspect-video w-full">
-            <img :src="`${encodePath(props.series.thumbnail)}`" alt="Thumbnail" />
+            <img
+                :src="`${encodePath(props.series.thumbnail)}`"
+                @error="event => event.target.src = '/thumbnails/backup_image_video.jpg'"
+                alt="Ilirski Bukvar thumbnail"
+            />
         </Link>
 
         <!-- Info + Actions (responsive layout) -->

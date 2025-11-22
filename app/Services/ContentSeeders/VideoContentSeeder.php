@@ -25,7 +25,7 @@ class VideoContentSeeder
                 'title' => $contentData['name'],
                 'parent_id' => $series->id ?? null,
                 'author_id' => $series->author_id ?? null,
-                'thumbnail_url' => $this->downloadThumbnail($contentData['thumbnail_url'], $this->getFileName($contentData), $contentData['series']),
+                'thumbnail_url' => $this->downloadThumbnail($contentData['thumbnail_url'], $this->getFileName($contentData['name']), $contentData['series']),
                 'url' => $contentData['url'],
                 'parent_type' => Series::class,
                 'download_url' => $contentData['download_url'],

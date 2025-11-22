@@ -65,7 +65,7 @@ class BooksSeeder extends ContentSeeder implements ContentWithDownloadableThumbn
                 ], [
                     'name' => $contentData['author'],
                 ])->id,
-                'thumbnail_url' => $this->downloadThumbnail($contentData['thumbnail'], $this->getFileName($contentData)),
+                'thumbnail_url' => $this->downloadThumbnail($contentData['thumbnail'], $this->getFileName($contentData['name'])),
                 'url' => $contentData['url'],
                 'downloaded' => false,
                 'parent_type' => Category::class,

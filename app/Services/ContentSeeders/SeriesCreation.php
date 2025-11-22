@@ -33,7 +33,7 @@ trait SeriesCreation
             return str_replace('/', '\\', $series['thumbnail']);
         }
 
-        return $this->downloadThumbnail($series['thumbnail'], $this->getFileName($series), $series);
+        return $this->downloadThumbnail($series['thumbnail'], $this->getFileName($series['name']), $series);
     }
 
     public function isThumbnailWindowsPath(string $thumbnail): bool

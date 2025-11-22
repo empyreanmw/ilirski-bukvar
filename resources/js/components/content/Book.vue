@@ -45,7 +45,12 @@ const openFile = (id: number): void => {
     >
         <!-- Image -->
         <div @click="openFile(props.book.id)" class="flex h-64 w-full cursor-pointer items-center justify-center bg-white pt-4 dark:bg-gray-900">
-            <img :src="props.book.thumbnail_url" alt="Cover" class="h-full w-auto object-contain" />
+            <img
+                alt="Cover"
+                class="h-full w-auto object-contain"
+                :src="props.book.thumbnail_url"
+                @error="event => event.target.src = '/thumbnails/backup_image_book.jpg'"
+            />
         </div>
 
         <!-- Info + Actions wrapper -->
